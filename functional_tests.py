@@ -14,7 +14,7 @@ class NewUserTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
 
         # She finds the page title and header mention matchmaking
-        self.assertIn('Match', self.browser.title)
+        self.assertIn('User Registration', self.browser.title)
         self.fail('Finish the test!')
 
         # She is immediately invited to answer a question and find a matchk
