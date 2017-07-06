@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 import unittest
 
 class NewUserTest(unittest.TestCase):
@@ -14,20 +16,37 @@ class NewUserTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
 
         # She finds the page title and header mention matchmaking
-        self.assertIn('User Registration', self.browser.title)
-        self.fail('Finish the test!')
+        self.assertIn('Registration', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Registration', header_text)
 
         # She is immediately invited to answer a question and find a matchk
-        # The question asks "What is your field of study?"
+        # The question asks "What is your discipline?"
+        inputbox = self.browser.find_element_by_id('id_discipline')
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Enter your discipline'
+        )
 
-        # She responds by typing in Educator
+        # She responds by typing in "Educator"
+        inputbox.send_keys('Educator')
+
 
         # When she presses enter , the page updates to show
-        # her field of study and the number of people that share that field,
-        # in addition to "1/3 questions answered" at the top of the page
+        # her discipline and the number of people that share that discipline,
+        # or something similar, in addition to "1/3 questions answered"
+        # at the top of the page
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+        table = self.browser.find_element_by_id('id_discipline_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertTrue(
+            any(row.text == 'Discipline: Educator' for row in rows)
+        )
 
         # Another question has appeared, asking Jamie "Name your favorite
         # musical artist(s) [4 at most]".
+        self.fail('Finish the test!')
 
         # She types in "The Rolling Stones" and presses enter
 
