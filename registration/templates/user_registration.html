@@ -10,10 +10,10 @@
     </div>
 
     <div name="registration-form">
-      <form action="/user_registration/" method="POST">
-        <label for="first_name">First name: </label>
+      <form action="/basic_info/" method="POST"> {% csrf_token %}
+        <!-- <label for="first_name">First name: </label>
         <input name="first_name_text" id="first_name" type="text" value="{{ current_name }}" />
-        <br />
+        <br /> -->
         <!-- Last name: <input name="last_name_text" id="id_last_name" placeholder="Enter your last name" />
         <br />
         Username: <input name="username_text" id="id_username" placeholder="Enter your username" />

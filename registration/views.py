@@ -7,9 +7,10 @@ from registration.models import User
 def basic_info(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
+
         if form.is_valid():
             # process data in form.cleaned_data as required
-
+            print(request.POST['first_name'])
             return HttpResponseRedirect('/thanks/')
     else:
         form = UserForm()
