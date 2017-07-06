@@ -1,9 +1,11 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import unittest
 
-class NewUserTest(unittest.TestCase):
+
+
+class NewUserTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -19,7 +21,7 @@ class NewUserTest(unittest.TestCase):
 
     def test_can_take_user_info_and_retrieve_it_later(self):
         ## Jamie has heard about a matchmaking app. She goes to its homepage
-        self.browser.get('http://localhost:8000/user_registration/')
+        self.browser.get('%s%s' % (self.live_server_url, '/user_registration/'))
 
         # She finds the page title and header mention matchmaking
         self.assertIn('Registration', self.browser.title)
@@ -31,33 +33,29 @@ class NewUserTest(unittest.TestCase):
         inputbox = self.browser.find_element_by_id('id_discipline')
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
-            'Enter your discipline'
+            'User\'s discipline'
         )
 
         # She responds by typing in "Educator"
         inputbox.send_keys('Educator')
 
         # When she presses enter , the page updates to show
-        # her discipline, in addition to "1/3 questions answered"
-        # at the top of the page
+        # her discipline at the top of the page
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_user_table('Discipline: Educator')
-        q_count = self.browser.find_element_by_id('id_q_count')
-        print(q_count.text)
-        self.assertEqual("1/3 Questions", q_count.text)
-        # Another question has appeared, asking Jamie "Name your favorite
-        # musical artist(s) [4 at most]".
-        # inputbox = self.browser.find_element_by_id('id_discipline')
+
+
+        # Another question has appeared, asking Jamie "Name a friend's
+        # discipline."
+        inputbox = self.browser.find_element_by_id('id_discipline')
         # She types in "The Rolling Stones" and presses enter
-        inputbox = self.browser.find_element_by_id('id_music_artist')
-        inputbox.send_keys('Arctic Monkeys')
+        inputbox.send_keys('Engineer')
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
         # The page now shows her field of interest, as well as her favorite artist
-        self.check_for_row_in_user_table('Discipline: Educator')
-        self.check_for_row_in_user_table('Favorite Musical Artists: Arctic Monkeys')
+        self.check_for_row_in_user_table('Discipline 1: Educator')
+        self.check_for_row_in_user_table('Discipline 2: Engineer')
 
         # Finally, Jamie is asked to name her favorite sports
         # She enters Baseball
@@ -75,6 +73,3 @@ class NewUserTest(unittest.TestCase):
         # She visits the url, her user profile is still there
 
         # Satisfied, she goes to watch television.
-
-if __name__ == '__main__':
-    unittest.main()
