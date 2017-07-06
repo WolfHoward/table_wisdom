@@ -32,10 +32,10 @@ class UserRegistrationTest(LiveServerTestCase):
         # To create a password
         # And to confirm his password
         form_text = self.browser.find_element_by_tag_name('form')
-        inputbox = self.browser.finde_element_by_id('id_first_name')
+        inputbox = self.browser.find_element_by_id('first_name')
         self.assertEqual(
             inputbox.get_attribute('name'),
-            'first_name'
+            'first_name_text'
         )
 
         ## At the bottom of the page is a checkbox reading "I am over the age of

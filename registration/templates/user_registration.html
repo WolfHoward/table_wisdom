@@ -10,8 +10,9 @@
     </div>
 
     <div name="registration-form">
-      <form action="/first-name/" method="POST">
-        First name: <input name="first_name_text" id="id_first_name" placeholder="Enter your first name" />
+      <form action="/user_registration/" method="POST">
+        <label for="first_name">First name: </label>
+        <input name="first_name_text" id="first_name" type="text" value="{{ current_name }}" />
         <br />
         <!-- Last name: <input name="last_name_text" id="id_last_name" placeholder="Enter your last name" />
         <br />
