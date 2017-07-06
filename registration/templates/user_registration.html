@@ -5,9 +5,13 @@
   </head>
   <body>
     <h1>New User Registration</h1>
-    <input id="id_discipline" placeholder="Enter your discipline" />
+    <form method="POST">
+      <input id="id_discipline" placeholder="Enter your discipline" />
+      {% csrf_token %}
+    </form>
+
     <table id="id_discipline_table">
-      
+
     </table>
 
   </body>

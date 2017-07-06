@@ -19,5 +19,5 @@ from registration import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home_page, name='home' )
+    url(r'^user_registration/', views.user_registration, name='user_registration' )
 ]

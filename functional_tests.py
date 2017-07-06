@@ -13,10 +13,11 @@ class NewUserTest(unittest.TestCase):
 
     def test_can_take_user_info_and_retrieve_it_later(self):
         ## Jamie has heard about a matchmaking app. She goes to its homepage
-        self.browser.get('http://localhost:8000')
+        self.browser.get('http://localhost:8000/user_registration')
 
+        time.sleep(10)
         # She finds the page title and header mention matchmaking
-        self.assertIn('Registration', self.browser.title)
+        self.assertIn('User Registration', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('Registration', header_text)
 
@@ -38,6 +39,7 @@ class NewUserTest(unittest.TestCase):
         # at the top of the page
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
+
         table = self.browser.find_element_by_id('id_discipline_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(
