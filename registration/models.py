@@ -9,9 +9,7 @@ class User(models.Model):
     email = models.EmailField(default='', max_length=150, name="email")
     password = models.CharField(default='', max_length=50, name="password")
 
-    def __str__(self):
-        return self.username
-#
+    
 # class UserForm(models.Model):
 #     class Meta:
 #         model = User
