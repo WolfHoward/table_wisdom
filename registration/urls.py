@@ -19,5 +19,5 @@ from . import views
 urlpatterns = [
 #    url(r'^user_registration/', views.user_registration, name='user_registration' ),
     url(r'^basic_info/', views.basic_info, name='basic_info'),
-    url(r'^thanks/', views.thanks, name='thanks'),
+    url(r'^confirmation/', views.confirmation, name='confirmation'),
 ]

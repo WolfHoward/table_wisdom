@@ -5,17 +5,9 @@
     <title>Name test</title>
   </head>
   <body>
-    <form action="/registration/thanks/" method="post">
+    <form method="post">
       {% csrf_token %}
-      {% for field in form %}
-        {% if field.name == "password" %}
-        <p>Password: {{ field }}</p>
-        {% elif field.name == "confirm_password" %}
-        <p>Confirm Password: {{ field }}</p>
-        {% else %}
-        <p>{{ field.name }}: {{ field }}</p>
-        {% endif %}
-      {% endfor %}
+      {{ form.as_p }}
       <input type="submit" value="Submit" />
     </form>
   </body>

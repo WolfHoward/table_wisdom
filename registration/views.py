@@ -10,8 +10,9 @@ def basic_info(request):
 
         if form.is_valid():
             # process data in form.cleaned_data as required
-            print(request.POST['first_name'])
-            return HttpResponseRedirect('/thanks/')
+            print(request.POST['firstName'])
+            form.save()
+            return HttpResponseRedirect('/registration/confirmation/')
     else:
         form = UserForm()
 
@@ -25,5 +26,5 @@ def user_registration(request):
     profiles = User.objects.all()
     return render(request, 'user_registration.html', {'profiles': profiles})
 
-def thanks(request):
-    return render(request, 'thanks.html')
+def confirmation(request):
+    return render(request, 'confirmation.html')
