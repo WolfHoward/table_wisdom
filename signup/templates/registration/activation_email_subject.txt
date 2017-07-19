@@ -1,0 +1,7 @@
+Generate subject line of email activation email. Will be condensed to a single line of text.
+
+Context:
+  activation_key
+  expiration_days
+  user
+  site

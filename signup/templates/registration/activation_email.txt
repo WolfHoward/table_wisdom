@@ -1,0 +1,8 @@
+Generate the body of activation email. Should display a link the user can
+click to activate the account.
+
+Context:
+  activation_key
+  expiration_days
+  user
+  site
