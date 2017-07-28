@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'signup',
+    'dashboard',
     #'registration',
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'table_wisdom.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, os.path.join(BASE_DIR, 'signup')],
+        'DIRS': [BASE_DIR, os.path.join(BASE_DIR, 'signup'),os.path.join(BASE_DIR, 'dashboard'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
